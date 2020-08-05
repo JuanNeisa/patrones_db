@@ -14,7 +14,7 @@ public class Movimiento {
     private int idBodega;
     //Identifica la llave primaria de la Producto a la cual se le relacionara el movimiento. Hace parte de la llave primaria de la tabla Movimiento.
     private int idProducto;
-    //IDentifica la bodega a la cual llegara esta transaccion. (Opcional)
+    //Identifica la bodega a la cual llegara esta transaccion. (Opcional)
     private int idBodegaDestino;
     //Identifica el tipo de movimiento o transaccion
     private int idTipo;
@@ -28,6 +28,17 @@ public class Movimiento {
     public Movimiento() {
     }
 
+    /***
+     * Esta clase refleja un movimiento o transaccion dentro del sistemas de inventarios de la empresa. Es de las entidades mas complejas por o que tiene bastantes identificadores con llaves foraneas.
+     * @param idMovimiento Identifica el movimiento mediante un numero. Hace parte de la llave primaria de la tabla Movimiento
+     * @param idBodega Identifica la llave primaria de la Bodega a la cual se le relacionara el movimiento. Hace parte de la llave primaria de la tabla Movimiento.
+     * @param idProducto Identifica la llave primaria de la Producto a la cual se le relacionara el movimiento. Hace parte de la llave primaria de la tabla Movimiento.
+     * @param idBodegaDestino Identifica la bodega a la cual llegara esta transaccion. (Opcional)
+     * @param idTipo Identifica el tipo de movimiento o transaccion
+     * @param m_fecha Identifica la fecha de la transaccion
+     * @param m_cantidad Identifica la cantidad del producto que se realizo en la transaccion
+     * @param idPersona Identifica la persona la cual realizo el movimiento
+     */
     public Movimiento(int idMovimiento, int idBodega, int idProducto, int idBodegaDestino, int idTipo, Date m_fecha, int m_cantidad, int idPersona) {
         this.idMovimiento = idMovimiento;
         this.idBodega = idBodega;

@@ -4,16 +4,31 @@ package clases;
  * @author patrones
  */
 public class Persona {
+    //Identifica la CC de la persona
     private int idPersona;
+    //Identifica la llave del cargo al cual esta relacionado actualmente
     private int idCargo;
+    //Describe el nombre de la persona
     private String p_nombre;
+    //Describe el celular de contacto de la persona
     private int p_celular;
+    //Identifica la CC del Jefe al cual esta bajo cargo. Si es jefe el espacio queda 'null'
     private int idJefe;
+    //Identifica la bodega que se encuentra actualmente trabajando.
     private int idBodega;
 
     public Persona() {
     }
 
+    /**
+     * Esta clase describe los datos de una persona o trbajador que se encontrara asociado a la empresa, utilizando los parametros descritos en la base de datos
+     * @param idPersona Identifica la CC de la persona
+     * @param idCargo Identifica la llave del cargo al cual esta relacionado actualmente
+     * @param p_nombre Describe el nombre de la persona
+     * @param p_celular Describe el celular de contacto de la persona
+     * @param idJefe Identifica la CC del Jefe al cual esta bajo cargo. Si es jefe el espacio queda 'null'
+     * @param idBodega Identifica la bodega que se encuentra actualmente trabajando.
+     */
     public Persona(int idPersona, int idCargo, String p_nombre, int p_celular, int idJefe, int idBodega) {
         this.idPersona = idPersona;
         this.idCargo = idCargo;
