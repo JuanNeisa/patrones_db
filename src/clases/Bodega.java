@@ -3,7 +3,7 @@ package clases;
 /**
  * @author patrones
  */
-public class Bogeda {
+public class Bodega {
     //Identifica la lave primaria de la tabla Bodega
     private int idBodega;
     //Identifica la ubicacion de la bodega
@@ -11,7 +11,7 @@ public class Bogeda {
     //Identifica la capacidad de almacenamiento que tiene la bodega
     private int b_capacidad;
 
-    public Bogeda() {
+    public Bodega() {
     }
     
     /**
@@ -20,7 +20,7 @@ public class Bogeda {
      * @param b_ubicacion Identifica la ubicacion de la bodega
      * @param b_capacidad Identifica la capacidad de almacenamiento que tiene la bodega
     */
-    public Bogeda(int idBodega, String b_ubicacion, int b_capacidad) {
+    public Bodega(int idBodega, String b_ubicacion, int b_capacidad) {
         this.idBodega = idBodega;
         this.b_ubicacion = b_ubicacion;
         this.b_capacidad = b_capacidad;
