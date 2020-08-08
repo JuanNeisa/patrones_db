@@ -1,6 +1,5 @@
 package conexion;
 
-import static conexion.ConexionRemota.driver;
 import interfaces.Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,10 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Esta clase se encargara de realizar la Conexion LOCAL con el servidor que almacena los datos de la base de datos del programa
+ * Esta clase se encargara de realizar la Conexion LOCAL con el servidor que
+ * almacena los datos de la base de datos del programa
+ *
  * @author patrones
  */
-public class ConexionLocal implements Conexion{
+public class ConexionLocal extends Conexion {
 
     // Librería de MySQL
     static String driver = "com.mysql.cj.jdbc.Driver";
@@ -34,34 +35,33 @@ public class ConexionLocal implements Conexion{
 
     // Clave de usuario
     static String password = "Napsmaster_990517";
-    
-    //Objeto para poder parametrizar la conexion a otras clases
-    static Connection conexion = null;
 
-   @Override
+    //Objeto para poder parametrizar la conexion a otras clases
+    private static Connection conexion = null;
+
+    @Override
     public void conectar() {
-        
         try {
             Class.forName(driver);
             conexion = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void desconectar() {
-        
-        try {
-            conexion.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexionRemota.class.getName()).log(Level.SEVERE, null, ex);
+            e.getMessage();
         }
     }
     
     @Override
-    public Connection getConexion(){
-        return conexion;
+     public void desconectar() {
+
+        try {
+            conexion.close();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
     }
 
+     @Override
+    public Connection getConexion() {
+        return conexion;
+    }
+    
 }

@@ -1,6 +1,6 @@
-package DAO;
+package Fachada;
 
-import clases.Bodega;
+import clases.Tipo;
 import interfaces.CRUD;
 import interfaces.Conexion;
 import java.sql.Connection;
@@ -12,43 +12,43 @@ import java.util.ArrayList;
 
 /**
  *
- * @author neisa
+ * @author patrones
  */
-public class BodegaDAO implements CRUD {
+public class TipoDAO implements CRUD {
 
     private Conexion tipoConexion = null;
 
-    public BodegaDAO(Conexion conexion) {
+    public TipoDAO(Conexion conexion) {
         this.tipoConexion = conexion;
     }
 
     @Override
     public Object BuscarPor(Object parametro) {
+        
         tipoConexion.conectar();
         Connection conn = tipoConexion.getConexion();
 
         Statement stm = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM BODEGA Where idBodega = " + parametro + ";";
+        String sql = "SELECT * FROM Tipo Where idTipo = " + parametro + ";";
 
         String rta = null;
 
         try {
-            Bodega bodega = new Bodega();
+            Tipo tipo = new Tipo();
             stm = conn.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
-                bodega.setIdBodega(rs.getInt("idBodega"));
-                bodega.setB_ubicacion(rs.getString("b_ubicacion"));
-                bodega.setB_capacidad(rs.getInt("b_capacidad"));
+                tipo.setIdTipo(rs.getInt("idTipo"));
+                tipo.setT_descripcion(rs.getString("t_descripcion"));
             }
             stm.close();
             rs.close();
             tipoConexion.desconectar();
-            return bodega;
+            return tipo;
         } catch (SQLException e) {
-            System.err.println("ERROR_BodegaDao.buscarPor: \n" + e.getMessage());
+            System.err.println("ERROR_TipoDao.buscarPor: \n" + e.getMessage());
         }
         return rta;
     }
@@ -58,27 +58,25 @@ public class BodegaDAO implements CRUD {
         tipoConexion.conectar();
         Connection conn = tipoConexion.getConexion();
 
-        Bodega bodega = (Bodega) obj_actualizar;
+        Tipo tipo = (Tipo) obj_actualizar;
         PreparedStatement ps = null;
         boolean actualizar = false;
-        String sql = "UPDATE Bodega "
-                + "SET b_ubicacion  = ?, "
-                + "b_capacidad  = ?"
-                + " WHERE Bodega.idBodega = ?;";
+        String sql = "UPDATE Tipo "
+                + "SET t_descripcion  = ?, "
+                + " WHERE Tipo.idTipo = ?;";
 
         try {
             ps = conn.prepareStatement(sql);
 
-            ps.setString(1, bodega.getB_ubicacion());
-            ps.setInt(2, bodega.getB_capacidad());
-            ps.setInt(3, bodega.getIdBodega());
+            ps.setString(1, tipo.getT_descripcion());
+            ps.setInt(2, tipo.getIdTipo());
 
             ps.executeUpdate();
             actualizar = true;
-            System.out.println("Datos de la BODEGA actualizados exitosamente");
+            System.out.println("Datos del CARGO actualizados exitosamente");
             tipoConexion.desconectar();
         } catch (SQLException e) {
-            System.err.println("ERROR_BodegaDao.actualizar: \n" + e.getMessage());
+            System.err.println("ERROR_TipoDao.actualizar: \n" + e.getMessage());
         }
         return actualizar;
     }
@@ -88,23 +86,23 @@ public class BodegaDAO implements CRUD {
         tipoConexion.conectar();
         Connection conn = tipoConexion.getConexion();
 
-        Bodega bodega = (Bodega) obj_eliminar;
+        Tipo tipo = (Tipo) obj_eliminar;
         PreparedStatement ps = null;
         boolean borrar = false;
 
         try {
-            if (bodega != null) {
-                String sql = "DELETE FROM Bodega WHERE idBodega= ?;";
+            if (tipo != null) {
+                String sql = "DELETE FROM Tipo WHERE idTipo = ?;";
                 ps = conn.prepareStatement(sql);
 
-                ps.setInt(1, bodega.getIdBodega());
+                ps.setInt(1, tipo.getIdTipo());
                 ps.executeUpdate();
                 borrar = true;
-                System.out.println("Bodega eliminada exitosamente");
+                System.out.println("Tipo eliminado exitosamente");
             }
             tipoConexion.desconectar();
         } catch (SQLException e) {
-            System.err.println("ERROR_BodegaDao.borrar: \n" + e.getMessage());
+            System.err.println("ERROR_TipoDao.borrar: \n" + e.getMessage());
         }
         return borrar;
     }
@@ -115,29 +113,28 @@ public class BodegaDAO implements CRUD {
         tipoConexion.conectar();
         Connection conn = tipoConexion.getConexion();
 
-        Bodega bodega = (Bodega) obj_crear;
+        Tipo tipo = (Tipo) obj_crear;
         boolean registrar = false;
 
         PreparedStatement ps = null;
 
-        String insertTableSQL = "INSERT INTO Bodega"
-                + "(idBodega, b_ubicacion, b_capacidad) VALUES"
-                + "(?,?,?);";
+        String insertTableSQL = "INSERT INTO Tipo"
+                + "(idTipo, t_descripcion) VALUES"
+                + "(?,?);";
 
         try {
             ps = conn.prepareStatement(insertTableSQL);
 
-            ps.setInt(1, 0);
-            ps.setString(2, bodega.getB_ubicacion());
-            ps.setInt(3, bodega.getB_capacidad());
+            ps.setInt(1, tipo.getIdTipo());
+            ps.setString(2, tipo.getT_descripcion());
 
             ps.executeUpdate();
             registrar = true;
-            System.out.println("Bodega agregada exitosamente");
+            System.out.println("Tipo agregada exitosamente");
             tipoConexion.desconectar();
 
         } catch (Exception e) {
-            System.err.println("ERROR_BodegaDao.Registrar: \n" + e.getMessage());
+            System.err.println("ERROR_TipoDao.Registrar: \n" + e.getMessage());
         }
         return registrar;
     }
@@ -147,28 +144,28 @@ public class BodegaDAO implements CRUD {
         tipoConexion.conectar();
         Connection conn = tipoConexion.getConexion();
         
-        ArrayList listaBodegas = new ArrayList();
+        ArrayList listaTipos = new ArrayList();
         Statement stm = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM BODEGA ;";
+        String sql = "SELECT * FROM Tipo ;";
 
         try {
             stm = conn.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
-                Bodega bodega = new Bodega();
-                bodega.setIdBodega(rs.getInt("idBodega"));
-                bodega.setB_ubicacion(rs.getString("b_ubicacion"));
-                bodega.setB_capacidad(rs.getInt("b_capacidad"));
-                listaBodegas.add(bodega);
+                Tipo tipo = new Tipo();
+                tipo.setIdTipo(rs.getInt("idTipo"));
+                tipo.setT_descripcion(rs.getString("t_descripcion"));
+                
+                listaTipos.add(tipo);
             }
             stm.close();
             rs.close();
             tipoConexion.desconectar();
-            return listaBodegas;
+            return listaTipos;
         } catch (SQLException e) {
-            System.err.println("ERROR_BodegaDao.listar: \n" + e.getMessage());
+        System.err.println("ERROR_TipoDao.listar: \n" + e.getMessage());
         }
         return null;
     }
