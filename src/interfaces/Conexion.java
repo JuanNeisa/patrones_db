@@ -1,10 +1,6 @@
 package interfaces;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author patrones
@@ -35,9 +31,20 @@ public abstract class Conexion {
     //Objeto para poder parametrizar la conexion a otras clases
     private static Connection conexion = null;
 
-    public abstract void conectar();
+    /**
+     * Este metodo se encarga de crear una conexion con la base de datos requerida.
+     * @return El retorno de este metodo dara el objeto de conexion.
+     */
+    public abstract Connection conectar();
 
+    /**
+     * Este metodo se encarga de desconectar la base de datos que se encuentre trabajando en ese momento.
+     */
     public abstract void desconectar();
 
-    public abstract Connection getConexion();
+    /**
+     * Este metodo es la aplicacion del patron Singleton e cual hace que sea el unico responsable de tener la instancia.
+     * @return La instancia de la propia clase.
+     */
+    public abstract Conexion getConexion();
 }

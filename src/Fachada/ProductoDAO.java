@@ -41,10 +41,9 @@ public class ProductoDAO implements CRUD {
             while (rs.next()) {
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setP_nombre(rs.getString("p_nombre"));
-                producto.setP_marca(rs.getString("p_marca"));
                 producto.setIdCategoria(rs.getInt("Categoria_idCategor"));
                 producto.setIdProveedor(rs.getInt("Proveedor_idProveedor"));
-                
+
             }
             stm.close();
             rs.close();
@@ -66,7 +65,6 @@ public class ProductoDAO implements CRUD {
         boolean actualizar = false;
         String sql = "UPDATE Producto "
                 + "SET p_nombre  = ?, "
-                + "p_marca  = ?"
                 + "Categoria_idCategoria  = ?"
                 + "Proveedor_idProveedor  = ?"
                 + " WHERE Producto.idProducto = ?;";
@@ -75,10 +73,9 @@ public class ProductoDAO implements CRUD {
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, producto.getP_nombre());
-            ps.setString(2, producto.getP_marca());
-            ps.setInt(3, producto.getIdCategoria());
-            ps.setInt(4, producto.getIdProveedor());
-            ps.setInt(5, producto.getIdProducto());
+            ps.setInt(2, producto.getIdCategoria());
+            ps.setInt(3, producto.getIdProveedor());
+            ps.setInt(4, producto.getIdProducto());
 
             ps.executeUpdate();
             actualizar = true;
@@ -128,17 +125,16 @@ public class ProductoDAO implements CRUD {
         PreparedStatement ps = null;
 
         String insertTableSQL = "INSERT INTO Producto"
-                + "(idProducto, p_nombre, p_marca, Categoria_idCategoria, Proveedor_idPoveedor) VALUES"
-                + "(?,?,?,?,?);";
+                + "(idProducto, p_nombre,  Categoria_idCategoria, Proveedor_idPoveedor) VALUES"
+                + "(?,?,?,?);";
 
         try {
             ps = conn.prepareStatement(insertTableSQL);
 
             ps.setInt(1, producto.getIdProducto());
             ps.setString(2, producto.getP_nombre());
-            ps.setString(3, producto.getP_marca());
-            ps.setInt(4, producto.getIdCategoria());
-            ps.setInt(5, producto.getIdProveedor());
+            ps.setInt(3, producto.getIdCategoria());
+            ps.setInt(4, producto.getIdProveedor());
 
             ps.executeUpdate();
             registrar = true;
@@ -155,7 +151,7 @@ public class ProductoDAO implements CRUD {
     public ArrayList<Object> Listar() {
         tipoConexion.conectar();
         Connection conn = tipoConexion.getConexion();
-        
+
         ArrayList listaProductos = new ArrayList();
         Statement stm = null;
         ResultSet rs = null;
@@ -169,10 +165,9 @@ public class ProductoDAO implements CRUD {
                 Producto producto = new Producto();
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setP_nombre(rs.getString("p_nombre"));
-                producto.setP_marca(rs.getString("p_marca"));
                 producto.setIdCategoria(rs.getInt("Categoria_idCategor"));
                 producto.setIdProveedor(rs.getInt("Proveedor_idProveedor"));
-                
+
                 listaProductos.add(producto);
             }
             stm.close();

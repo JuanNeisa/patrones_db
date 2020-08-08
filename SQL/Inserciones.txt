@@ -1,0 +1,32 @@
+insert into bodega values (0,"Suba",1234);
+insert into bodega values (0,"Kennedy",12);
+insert into bodega values (0,"Engativa",1000);
+
+insert into categoria values (0,"Herramientas");
+insert into categoria values (0,"Muebles");
+insert into categoria values (0,"Puertas");
+
+insert into cargo values (0,"Auxiliar de Bodega");
+insert into cargo values (0,"Administrador de sede");
+insert into cargo values (0,"Administrador General");
+
+insert into proveedor values (0,"Herramientas Unidas SA");
+insert into proveedor values (0,"Hammar");
+insert into proveedor values (0,"Doortec SAS");
+
+insert into tipo values (0,"Movimiento de Bodega");
+insert into tipo values (0,"Venta");
+insert into tipo values (0,"Eliminar del inventario");
+
+insert into producto values (0,"Mesa de centro",2,2);
+insert into producto values (0,"Martillo doble cabeza Titanio",1,1);
+insert into producto values (0,"Puerta Madera reforzada",3,3);
+
+insert into persona values (1032504691, 'juan123', 3, 'Juan David Neisa',3202521766,null,1);
+insert into persona values (9999999999, 'jorgexxx', 1, 'Jorge Antonio Escobar',111111111,1032504691,1);
+insert into persona values (8888888888, 'Andres123', 2, 'Andres Felipe Ramirez',3214567654,1032504691,3);
+
+insert into movimiento values (0,1,2,3,1,now(),20,1032504691);
+insert into movimiento values (0,1,2,3,1,'08-08-20',20,1032504691);
+
+

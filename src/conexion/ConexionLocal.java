@@ -40,13 +40,14 @@ public class ConexionLocal extends Conexion {
     private static Connection conexion = null;
 
     @Override
-    public void conectar() {
+    public Connection conectar() {
         try {
             Class.forName(driver);
             conexion = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.getMessage();
         }
+        return conexion;
     }
     
     @Override
@@ -60,8 +61,8 @@ public class ConexionLocal extends Conexion {
     }
 
      @Override
-    public Connection getConexion() {
-        return conexion;
+    public ConexionLocal getConexion() {
+        return this;
     }
     
 }

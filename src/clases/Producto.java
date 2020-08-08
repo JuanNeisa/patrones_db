@@ -13,8 +13,6 @@ public class Producto {
     private int idProducto;
     //Identifica el nombre del producto 
     private String p_nombre;
-    //Identifica la marca del producto 
-    private String p_marca;
     //Identifica la categoria a la cual esta relacionada el producto
     private int idCategoria;
     //Identifica el proveedor del producto
@@ -26,14 +24,12 @@ public class Producto {
      * Este constructor reune todos los parametros necesarios para crear un Producto segun la BDS
      * @param idProducto Identifica la llave primaria de la tabla Producto
      * @param p_nombre Identifica el nombre del producto 
-     * @param p_marca Identifica la marca del producto
      * @param idCategoria Identifica la categoria a la cual esta relacionada el producto
      * @param idProveedor Identifica el proveedor del producto
     */
-    public Producto(int idProducto, String p_nombre, String p_marca, int idCategoria, int idProveedor) {
+    public Producto(int idProducto, String p_nombre, int idCategoria, int idProveedor) {
         this.idProducto = idProducto;
         this.p_nombre = p_nombre;
-        this.p_marca = p_marca;
         this.idCategoria = idCategoria;
         this.idProveedor = idProveedor;
     }
@@ -54,14 +50,6 @@ public class Producto {
         this.p_nombre = p_nombre;
     }
 
-    public String getP_marca() {
-        return p_marca;
-    }
-
-    public void setP_marca(String p_marca) {
-        this.p_marca = p_marca;
-    }
-
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -80,6 +68,6 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "idProducto=" + idProducto + ", p_nombre=" + p_nombre + ", p_marca=" + p_marca + ", idCategoria=" + idCategoria + ", idProveedor=" + idProveedor + '}';
+        return "Producto{" + "idProducto=" + idProducto + ", p_nombre=" + p_nombre + ", idCategoria=" + idCategoria + ", idProveedor=" + idProveedor + '}';
     }
 }

@@ -1,6 +1,7 @@
 package Fachada;
 
 import clases.Bodega;
+import conexion.ConexionRemota;
 import interfaces.CRUD;
 import interfaces.Conexion;
 import java.sql.Connection;
@@ -9,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,13 +22,12 @@ public class BodegaDAO implements CRUD {
     private Conexion tipoConexion = null;
 
     public BodegaDAO(Conexion conexion) {
-        this.tipoConexion = conexion;
+        this.tipoConexion = conexion.getConexion();
     }
 
     @Override
     public Object BuscarPor(Object parametro) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Statement stm = null;
         ResultSet rs = null;
@@ -55,8 +57,7 @@ public class BodegaDAO implements CRUD {
 
     @Override
     public boolean actualizar(Object obj_actualizar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Bodega bodega = (Bodega) obj_actualizar;
         PreparedStatement ps = null;
@@ -85,8 +86,7 @@ public class BodegaDAO implements CRUD {
 
     @Override
     public boolean eliminar(Object obj_eliminar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Bodega bodega = (Bodega) obj_eliminar;
         PreparedStatement ps = null;
@@ -112,8 +112,7 @@ public class BodegaDAO implements CRUD {
     @Override
     public boolean crear(Object obj_crear) {
 
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Bodega bodega = (Bodega) obj_crear;
         boolean registrar = false;
@@ -144,14 +143,13 @@ public class BodegaDAO implements CRUD {
 
     @Override
     public ArrayList<Object> Listar() {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
         
         ArrayList listaBodegas = new ArrayList();
         Statement stm = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM BODEGA ;";
+        String sql = "SELECT * FROM Bodega;";
 
         try {
             stm = conn.createStatement();
@@ -165,7 +163,7 @@ public class BodegaDAO implements CRUD {
             }
             stm.close();
             rs.close();
-            tipoConexion.desconectar();
+
             return listaBodegas;
         } catch (SQLException e) {
             System.err.println("ERROR_BodegaDao.listar: \n" + e.getMessage());
