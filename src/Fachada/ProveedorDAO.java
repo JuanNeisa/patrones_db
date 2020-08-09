@@ -25,8 +25,7 @@ public class ProveedorDAO implements CRUD {
     @Override
     public Object BuscarPor(Object parametro) {
         
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Statement stm = null;
         ResultSet rs = null;
@@ -55,8 +54,7 @@ public class ProveedorDAO implements CRUD {
 
     @Override
     public boolean actualizar(Object obj_actualizar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Proveedor proveedor = (Proveedor) obj_actualizar;
         PreparedStatement ps = null;
@@ -73,7 +71,7 @@ public class ProveedorDAO implements CRUD {
 
             ps.executeUpdate();
             actualizar = true;
-            System.out.println("Datos del CARGO actualizados exitosamente");
+            System.out.println("Datos del Proveedor actualizados exitosamente");
             tipoConexion.desconectar();
         } catch (SQLException e) {
             System.err.println("ERROR_ProveedorDao.actualizar: \n" + e.getMessage());
@@ -83,8 +81,7 @@ public class ProveedorDAO implements CRUD {
 
     @Override
     public boolean eliminar(Object obj_eliminar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Proveedor proveedor = (Proveedor) obj_eliminar;
         PreparedStatement ps = null;
@@ -110,8 +107,7 @@ public class ProveedorDAO implements CRUD {
     @Override
     public boolean crear(Object obj_crear) {
 
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Proveedor proveedor = (Proveedor) obj_crear;
         boolean registrar = false;
@@ -141,8 +137,7 @@ public class ProveedorDAO implements CRUD {
 
     @Override
     public ArrayList<Object> Listar() {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
         
         ArrayList listaProveedors = new ArrayList();
         Statement stm = null;

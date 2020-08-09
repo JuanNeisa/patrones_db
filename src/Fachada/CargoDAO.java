@@ -25,8 +25,7 @@ public class CargoDAO implements CRUD {
     @Override
     public Object BuscarPor(Object parametro) {
         
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Statement stm = null;
         ResultSet rs = null;
@@ -55,9 +54,7 @@ public class CargoDAO implements CRUD {
 
     @Override
     public boolean actualizar(Object obj_actualizar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
-
+        Connection conn = tipoConexion.conectar();
         Cargo cargo = (Cargo) obj_actualizar;
         PreparedStatement ps = null;
         boolean actualizar = false;
@@ -83,9 +80,7 @@ public class CargoDAO implements CRUD {
 
     @Override
     public boolean eliminar(Object obj_eliminar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
-
+        Connection conn = tipoConexion.conectar();
         Cargo cargo = (Cargo) obj_eliminar;
         PreparedStatement ps = null;
         boolean borrar = false;
@@ -110,8 +105,7 @@ public class CargoDAO implements CRUD {
     @Override
     public boolean crear(Object obj_crear) {
 
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Cargo cargo = (Cargo) obj_crear;
         boolean registrar = false;
@@ -141,8 +135,7 @@ public class CargoDAO implements CRUD {
 
     @Override
     public ArrayList<Object> Listar() {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
         
         ArrayList listaCargos = new ArrayList();
         Statement stm = null;

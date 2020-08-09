@@ -24,14 +24,13 @@ public class InventarioDAO implements CRUD {
 
     @Override
     public Object BuscarPor(Object parametro) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Statement stm = null;
         ResultSet rs = null;
 
         Inventario inv = (Inventario)parametro; 
-        String sql = "SELECT * FROM INVENTARIO Where Bodega_idBodega = " + inv.getIdBodega() 
+        String sql = "SELECT * FROM Inventario Where Bodega_idBodega = " + inv.getIdBodega() 
                 + "and Producto_idProducto = "+ inv.getIdProducto() +";" ;
 
         String rta = null;
@@ -59,8 +58,7 @@ public class InventarioDAO implements CRUD {
 
     @Override
     public boolean actualizar(Object obj_actualizar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Inventario inventario = (Inventario) obj_actualizar;
         PreparedStatement ps = null;
@@ -93,8 +91,7 @@ public class InventarioDAO implements CRUD {
 
     @Override
     public boolean eliminar(Object obj_eliminar) {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Inventario inventario = (Inventario) obj_eliminar;
         PreparedStatement ps = null;
@@ -121,8 +118,7 @@ public class InventarioDAO implements CRUD {
     @Override
     public boolean crear(Object obj_crear) {
 
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
 
         Inventario inventario = (Inventario) obj_crear;
         boolean registrar = false;
@@ -155,8 +151,7 @@ public class InventarioDAO implements CRUD {
 
     @Override
     public ArrayList<Object> Listar() {
-        tipoConexion.conectar();
-        Connection conn = tipoConexion.getConexion();
+        Connection conn = tipoConexion.conectar();
         
         ArrayList listaInventarios = new ArrayList();
         Statement stm = null;

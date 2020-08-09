@@ -4,8 +4,6 @@ import interfaces.Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Esta clase se encargara de realizar la Conexion LOCAL con el servidor que
@@ -38,7 +36,7 @@ public class ConexionLocal extends Conexion {
 
     //Objeto para poder parametrizar la conexion a otras clases
     private static Connection conexion = null;
-
+    
     @Override
     public Connection conectar() {
         try {

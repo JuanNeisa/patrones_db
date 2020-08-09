@@ -1,7 +1,6 @@
 package Fachada;
 
 import clases.Bodega;
-import conexion.ConexionRemota;
 import interfaces.CRUD;
 import interfaces.Conexion;
 import java.sql.Connection;
@@ -10,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +29,7 @@ public class BodegaDAO implements CRUD {
         Statement stm = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM BODEGA Where idBodega = " + parametro + ";";
+        String sql = "SELECT * FROM Bodega Where idBodega = " + parametro + ";";
 
         String rta = null;
 

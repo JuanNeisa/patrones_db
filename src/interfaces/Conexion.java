@@ -30,7 +30,7 @@ public abstract class Conexion {
 
     //Objeto para poder parametrizar la conexion a otras clases
     private static Connection conexion = null;
-
+    
     /**
      * Este metodo se encarga de crear una conexion con la base de datos requerida.
      * @return El retorno de este metodo dara el objeto de conexion.
